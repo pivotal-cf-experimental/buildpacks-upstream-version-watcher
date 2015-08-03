@@ -32,7 +32,7 @@ Top-level keys are either "buildpack" or "rootfs"
 
 A "buildpack" must contain these keys:
 
-- `git` → a git URL
+- `url` → a git URL
 
 A "buildpack" may contain these keys:
 

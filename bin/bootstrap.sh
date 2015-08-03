@@ -9,8 +9,8 @@ for m in *-buildpack/manifest.yml ; do
   
   pushd $buildpack 2>&1 > /dev/null
     url=$(git remote -v | fgrep fetch | awk '{print $2}')
-    echo "    git: ${url}"
+    echo "    url: ${url}"
     echo "    branch: develop"
+    echo "    dependencies: {}"
   popd 2>&1 > /dev/null
 done
-

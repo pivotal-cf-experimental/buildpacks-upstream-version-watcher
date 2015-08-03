@@ -4,4 +4,15 @@ $: << File.expand_path(File.join(File.dirname(__FILE__), "..", "lib"))
 
 require 'upstream_version_watcher'
 
-UpstreamVersionWatcher::SanityChecker.new.check
+checker = UpstreamVersionWatcher::SanityChecker.new
+checker.check
+
+unless checker.errors.empty?
+  checker.errors.each do |error|
+    puts "ERROR: #{error}"
+  end
+  exit 1
+end
+
+exit 0
+

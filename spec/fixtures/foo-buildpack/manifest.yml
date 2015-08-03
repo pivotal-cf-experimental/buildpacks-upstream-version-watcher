@@ -1,0 +1,16 @@
+---
+language: foo
+
+dependencies:
+  - name: node
+    version: 0.12.7
+    uri: https://pivotal-buildpacks.s3.amazonaws.com/node/beta-binaries/node-0.12.7-linux-x64.tar.gz
+    md5: 2b966ce7cceda8bcb6aba43eb99b81cf
+    cf_stacks:
+      - cflinuxfs2
+  - name: libyaml
+    version: 0.1.6
+    uri: https://pivotal-buildpacks.s3.amazonaws.com/ruby/binaries/cflinuxfs2/libyaml-0.1.6.tgz
+    md5: 94665f3a39e670507828f5084a40b669
+    cf_stacks:
+      - cflinuxfs2

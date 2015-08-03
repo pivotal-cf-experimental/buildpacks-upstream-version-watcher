@@ -129,9 +129,12 @@ git-commit after a successful run.
 ## Clever Names Considered Harmful
 
 You'll note that I have given this sensible-yet-boring software a
-sensible-yet-boring name, and notably have not artifically glamorized
-with something unnecessarily clever like "grizzly bear". Yes, this is
-notable these days. Take heed.
+sensible-yet-boring name, and have not artifically glamorized it with
+something unnecessarily clever like "grizzly bear" (who, you might
+object, is probably looking downstream for salmon, but whatever).
+
+Yes, this is notable these days. Take heed.
+
 
 ## License
 

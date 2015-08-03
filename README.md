@@ -22,6 +22,24 @@ upstream updates.
     So that, every time, I can update Buildpacks and RootFS within the declared SLA.
 
 
+## Usage
+
+Primary usage should be through two scripts in the `bin` directory.
+
+The first, `detect-upstream-updates`, will iterate over a set of known
+dependencies in `upstream.yml` and check upstream if there are newer
+versions available. If newer versions are available, then this script
+will print out the detected versions, as well as exit with a nonzero
+status code.
+
+The second, `upstream-sanity-check`, is used to check that
+`upstream.yml` has a complete set of known dependencies. It will
+iterate over the defined buildpacks and rootfses and collect the
+declared dependencies, emitting an error message and exiting with
+nonzero status code if any are found.
+
+
+
 ## Metadata
 
 Metadata about each upstream component is stored in the file `upstream.yml`.

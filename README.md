@@ -30,14 +30,46 @@ Metadata about each upstream component is stored in the file `upstream.yml`.
 
 Top-level keys are either "buildpack" or "rootfs"
 
-A "buildpack" must contain these keys:
+A "buildpack" __must__ contain these keys:
 
-- `url` → a git URL
+- `url` → a URL to a source code repository
 
-A "buildpack" may contain these keys:
+A "buildpack" __may__ contain these keys:
 
 - `branch` → the branch that should be used to check `upstream.yml` metadata (default: `master`)
 
+A "buildpack" __should__ contain these keys:
+
+- `dependencies` → a hash of names to more descriptive information (see below)
+
+
+#### Describing dependencies' release metadata
+
+Each member of `dependencies` may be described by a set of key-value
+pairs which describe both __where__ release information is located, as
+well as __how__ it is presented.
+
+* `scm-tag` → URL to a source code repository
+  Use of this descriptor indicates that tags on a canonical repository will indicate a release has been made.
+
+* ... more to come
+
+
+#### Example
+
+A small example of an `upstream.yml`:
+
+```yaml
+buildpack:
+  foo-buildpack:
+    url: https://github.com/foo-co/foo-buildpack
+    branch: develop
+    dependencies:
+      foo-compiler:
+        scm-tag: https://github.com/foo-co/foo-compiler
+      foo-fighter:
+        git-tag: https://myinternal/gitserver/foo-fighter.git
+```
 
 
 ## Metametadata

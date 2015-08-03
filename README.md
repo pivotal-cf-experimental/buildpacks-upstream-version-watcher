@@ -68,7 +68,7 @@ buildpack:
       foo-compiler:
         scm-tag: https://github.com/foo-co/foo-compiler
       foo-fighter:
-        git-tag: https://myinternal/gitserver/foo-fighter.git
+        scm-tag: https://myinternal/gitserver/foo-fighter.git
 ```
 
 

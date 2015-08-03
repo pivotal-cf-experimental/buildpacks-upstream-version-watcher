@@ -1,3 +1,3 @@
 require 'rspec'
 
-require 'upstream-version-watcher'
+require 'upstream_version_watcher'

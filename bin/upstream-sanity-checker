@@ -1,5 +1,5 @@
 #! /usr/bin/env ruby
 
-require 'upstream-version-watcher'
+require 'upstream_version_watcher'
 
 UpstreamVersionWatcher::SanityChecker.new.check

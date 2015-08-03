@@ -19,5 +19,17 @@ describe UpstreamVersionWatcher::Buildpack do
     it "defaults 'branch' to 'master'" do
       expect(Buildpack.new("url" => "https://foo.bar/bazz/quux").branch).to eq "master"
     end
+
+    it "allows 'dependencies'" do
+      expect(Buildpack.new("url" => "asdf", "dependencies" => {
+            "foo" => {},
+            "bar" => {},
+            "bazz" => {}
+          }).dependencies).to eq({
+            "foo" => {},
+            "bar" => {},
+            "bazz" => {}
+        })
+    end
   end
 end

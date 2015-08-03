@@ -1,0 +1,25 @@
+buildpack:
+  asp.net5-buildpack:
+    git: git@github.com:cloudfoundry-community/asp.net5-buildpack
+    branch: develop
+  binary-buildpack:
+    git: git@github.com:cloudfoundry/binary-buildpack
+    branch: develop
+  go-buildpack:
+    git: git@github.com:cloudfoundry/go-buildpack
+    branch: develop
+  nodejs-buildpack:
+    git: git@github.com:cloudfoundry/nodejs-buildpack
+    branch: develop
+  php-buildpack:
+    git: git@github.com:cloudfoundry/php-buildpack
+    branch: develop
+  python-buildpack:
+    git: git@github.com:cloudfoundry/python-buildpack
+    branch: develop
+  ruby-buildpack:
+    git: git@github.com:cloudfoundry/ruby-buildpack
+    branch: develop
+  staticfile-buildpack:
+    git: git@github.com:cloudfoundry/staticfile-buildpack
+    branch: develop

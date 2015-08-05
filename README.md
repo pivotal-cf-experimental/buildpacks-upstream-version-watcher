@@ -42,7 +42,22 @@ nonzero status code if any are found.
 
 ## Metadata
 
-Metadata about each upstream component is stored in the file `upstream.yml`.
+Metadata about each upstream component is stored in the file `upstream.yml`. Here's an example:
+
+A small example of an `upstream.yml`:
+
+```yaml
+buildpack:
+  foo-buildpack:
+    url: https://github.com/foo-co/foo-buildpack
+    branch: develop
+    dependencies:
+      foo-compiler:
+        scm-tag: https://github.com/foo-co/foo-compiler
+      foo-fighter:
+        scm-tag: https://myinternal/gitserver/foo-fighter.git
+```
+
 
 ### Format of `upstream.yml`
 
@@ -72,22 +87,6 @@ well as __how__ it is presented.
 
 * ... more to come
 
-
-#### Example
-
-A small example of an `upstream.yml`:
-
-```yaml
-buildpack:
-  foo-buildpack:
-    url: https://github.com/foo-co/foo-buildpack
-    branch: develop
-    dependencies:
-      foo-compiler:
-        scm-tag: https://github.com/foo-co/foo-compiler
-      foo-fighter:
-        scm-tag: https://myinternal/gitserver/foo-fighter.git
-```
 
 
 ## Metametadata

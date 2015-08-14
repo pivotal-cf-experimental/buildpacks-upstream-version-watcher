@@ -36,5 +36,11 @@ module UpstreamVersionWatcher
         end
       end
     end
+
+    describe '#manifest' do
+      it 'returns the manifest yaml' do
+        allow(subject).to_recieve(:`)
+      end
+    end
   end
 end

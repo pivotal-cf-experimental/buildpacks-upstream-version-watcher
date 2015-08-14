@@ -1,49 +1,49 @@
-buildpack:
-  binary-buildpack:
-    url: git@github.com:cloudfoundry/binary-buildpack
-    branch: develop
-    dependencies: {}
-  go-buildpack:
-    url: git@github.com:cloudfoundry/go-buildpack
-    branch: develop
-    dependencies:
-      go: {}
-  nodejs-buildpack:
-    url: git@github.com:cloudfoundry/nodejs-buildpack
-    branch: develop
-    dependencies:
-      node: {}
-  php-buildpack:
-    url: git@github.com:cloudfoundry/php-buildpack
-    branch: develop
-    dependencies:
-      newrelic: {}
-      httpd: {}
-      php: {}
-      nginx: {}
-      composer: {}
-      hhvm: {}
-  python-buildpack:
-    url: git@github.com:cloudfoundry/python-buildpack
-    branch: develop
-    dependencies:
-      libmemcache: {}
-      libffi: {}
-      python: {}
-  ruby-buildpack:
-    url: git@github.com:cloudfoundry/ruby-buildpack
-    branch: develop
-    dependencies:
-      libyaml: {}
-      bundler: {}
-      rails_log_stdout: {}
-      rails3_serve_static_assets: {}
-      openjdk1.8-latest: {}
-      ruby: {}
-      jruby: {}
-      node: {}
-  staticfile-buildpack:
-    url: git@github.com:cloudfoundry/staticfile-buildpack
-    branch: develop
-    dependencies:
-      nginx: {}
+buildpacks:
+- name: binary-buildpack
+  url: git@github.com:cloudfoundry/binary-buildpack
+  branch: develop
+  dependencies: {}
+- name: go-buildpack
+  url: git@github.com:cloudfoundry/go-buildpack
+  branch: develop
+  dependencies:
+    go: {}
+- name: nodejs-buildpack
+  url: git@github.com:cloudfoundry/nodejs-buildpack
+  branch: develop
+  dependencies:
+    node: {}
+- name: php-buildpack
+  url: git@github.com:cloudfoundry/php-buildpack
+  branch: develop
+  dependencies:
+    newrelic: {}
+    httpd: {}
+    php: {}
+    nginx: {}
+    composer: {}
+    hhvm: {}
+- name: python-buildpack
+  url: git@github.com:cloudfoundry/python-buildpack
+  branch: develop
+  dependencies:
+    libmemcache: {}
+    libffi: {}
+    python: {}
+- name: ruby-buildpack
+  url: git@github.com:cloudfoundry/ruby-buildpack
+  branch: develop
+  dependencies:
+    libyaml: {}
+    bundler: {}
+    rails_log_stdout: {}
+    rails3_serve_static_assets: {}
+    openjdk1.8-latest: {}
+    ruby: {}
+    jruby: {}
+    node: {}
+- name: staticfile-buildpack
+  url: git@github.com:cloudfoundry/staticfile-buildpack
+  branch: develop
+  dependencies:
+    nginx: {}

@@ -1,35 +1,40 @@
 require 'spec_helper'
 
-describe UpstreamVersionWatcher::Buildpack do
-  Buildpack = UpstreamVersionWatcher::Buildpack
+module UpstreamVersionWatcher
+  describe Buildpack do
+    subject { Buildpack.new(options) }
 
-  describe "initialization and defaults" do
-    it "accepts a hash of string keys" do
-      expect(Buildpack.new("url" => "https://foo.bar/bazz/quux").url).to eq "https://foo.bar/bazz/quux"
-    end
+    describe '#new' do
+      context 'when url is missing from arguments' do
+        it 'should raise error' do
+          expect { Buildpack.new({}) }.to raise_error(ArgumentError)
+        end
+      end
 
-    it "requires 'url'" do
-      expect { Buildpack.new({}) }.to raise_error(ArgumentError)
-    end
+      context 'when valid arguments are passed' do
+        let(:options) do
+          {
+            'url'          => 'https://foo.bar/bazz/quux',
+            'name'         => 'stacy',
+            'branch'       => 'develop',
+            'dependencies' => {'foo' => 'bar'}
+          }
+        end
 
-    it "allows 'branch'" do
-      expect(Buildpack.new("url" => "https://foo.bar/bazz/quux", "branch" => "develop").branch).to eq "develop"
-    end
+        it { expect(subject.url).to eq 'https://foo.bar/bazz/quux' }
+        it { expect(subject.name).to eq 'stacy' }
+        it { expect(subject.branch).to eq 'develop' }
+        it 'gives a valid dependencies' do
+          expect(subject.dependencies).to eq({'foo' => 'bar'})
+        end
 
-    it "defaults 'branch' to 'master'" do
-      expect(Buildpack.new("url" => "https://foo.bar/bazz/quux").branch).to eq "master"
-    end
-
-    it "allows 'dependencies'" do
-      expect(Buildpack.new("url" => "asdf", "dependencies" => {
-            "foo" => {},
-            "bar" => {},
-            "bazz" => {}
-          }).dependencies).to eq({
-            "foo" => {},
-            "bar" => {},
-            "bazz" => {}
-        })
+        context 'when no branch arguments are passed' do
+          let(:options) do
+            {'url' => 'https://foo.bar/bazz/quux'}
+          end
+          it { expect(subject.branch).to eq('master') }
+        end
+      end
     end
   end
 end

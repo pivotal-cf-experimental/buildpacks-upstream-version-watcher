@@ -3,52 +3,60 @@ require 'spec_helper'
 module UpstreamVersionWatcher
   describe UpstreamConfig do
     describe ".new" do
-      it "loads 'upstream.yml' by default" do
-        Dir.mktmpdir do |dir|
-          Dir.chdir dir do
-            File.open("upstream.yml", "w") { |f| f.write "hello: 1234" }
 
+      let(:filename)      { nil }
+      let(:upstream_info) { 'hello: 1234' }
+      let(:project_dir)   { Dir.mktmpdir }
+
+      context 'when upstream.yml is provided' do
+        let(:filename) { 'upstream.yml' }
+        before do
+          File.write("#{project_dir}/#{filename}", upstream_info)
+        end
+
+        it 'it\'s loaded by default' do
+          Dir.chdir(project_dir) do
             expect(UpstreamConfig.new.data["hello"]).to eq 1234
-
           end
         end
       end
 
-      it "accepts an alternate filename" do
-        Dir.mktmpdir do |dir|
-          Dir.chdir dir do
-            File.open("fezziwig.yml", "w") { |f| f.write "hello: 1234" }
+      context 'when an alternate filename is provided' do
+        let(:filename) { 'fezziwig.yml' }
+        before do
+          File.write("#{project_dir}/#{filename}", upstream_info)
+        end
 
-            expect(UpstreamConfig.new("fezziwig.yml").data["hello"]).to eq 1234
-
+        it 'it\'s loaded when passed as an argument' do
+          Dir.chdir(project_dir) do
+            expect(UpstreamConfig.new('fezziwig.yml').data["hello"]).to eq 1234
           end
         end
       end
 
-      it "accepts injection of test data" do
-        Dir.mktmpdir do |dir|
-          Dir.chdir dir do
-            hash = {"hello" => 1234}
+      context 'when hash data is injected' do
+        it 'it\'s loaded when passed as an argument' do
 
-            expect(UpstreamConfig.new(hash).data["hello"]).to eq 1234
+          Dir.chdir(project_dir) do
+            expect(UpstreamConfig.new({'fake_data' => 1234}).data['fake_data']).to eq 1234
           end
         end
       end
     end
 
     describe "#buildpacks" do
-      it "returns hash of Buildpack objects" do
+      it "returns an array of Buildpack objects" do
         hash = {
-          "buildpack" => {
-            "foo" => {"url" => "http://foo.bar"},
-            "bar" => {"url" => "http://bar.bar"}
-          }
+          'buildpacks' => [
+            {'name' => 'foo', 'url' => 'http://foo.bar' },
+            {'name' => 'bar', 'url' => 'http://bar.bar' }
+          ]
         }
 
         config = UpstreamConfig.new(hash)
         expect(config.buildpacks.length).to eq 2
-        expect(config.buildpacks["foo"].url).to eq ("http://foo.bar")
-        expect(config.buildpacks["bar"].url).to eq ("http://bar.bar")
+        expect(config.buildpacks[0].url).to eq ("http://foo.bar")
+        expect(config.buildpacks[1].url).to eq ("http://bar.bar")
       end
     end
   end
